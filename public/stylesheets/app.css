@@ -1,0 +1,35 @@
+
+    body{
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThBf5vbpifVhwxNovUA1dPkuzQbc20KlPJYWyEb3Kr-yR994Wy&usqp=CAU);
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: Source Sans Pro;
+    }
+    
+    i.icon{
+	font-size: 2em;
+    }
+
+    .container.main{
+        margin-top: 5.0em;
+    }
+
+    #delete{
+        display: inline;
+    }   
+
+    .chevron{
+        height: 10px;
+    }
+
+    .date {
+        color: #3498db;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+    }
+
+
+
