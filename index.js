@@ -4,7 +4,7 @@ var methodOverride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var port = 3000;
+var PORT = process.env.PORT || 8080;
 
 //APP config
 mongoose.connect("mongodb://localhost:27017 /blog_app", {
@@ -28,27 +28,16 @@ var blogSchema = new mongoose.Schema({
 });
 var Blog = mongoose.model("Blog", blogSchema);
 
-//to create a new blog in code
-// Blog.create(
-//     {
-//         title: "Mountain Hill",
-//         image: "https://images.unsplash.com/photo-1496947850313-7743325fa58c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",    
-//         body: "This is a huge Mountain hill, no bathrooms.  No water. Beautiful Mountains!"
-//     },
-//     function (err, blio) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log("NEWLY CREATED BLOG");
-//             console.log(blio);
-//         }
-//     }
-// );
+
+
+app.get("/", function(req, res) {
+    res.redirect("/blogs");
+});
 
 
 //ROUTE
 
-app.get("/", function (req, res) {
+app.get("/blogs", function (req, res) {
     Blog.find({}, function(err, blogs){
         if(err){
             console.log("err!");
@@ -84,11 +73,11 @@ app.get("/blogs/:id", function(req, res){
             res.render("show", {blog: foundBlog});
         }
     })
- });
+});
 
 
  //EDIT ROUTE
- app.get("/blogs/:id/edit", function(req, res){
+app.get("/blogs/:id/edit", function(req, res){
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err){
             console.log("ERROR!")
@@ -120,7 +109,7 @@ app.delete("/blogs/:id", function(req, res){
             res.redirect("/blogs");
         }
     })
- });
+});
 
 app.listen(port, function () {
     console.log(" BlogSite server is started");
